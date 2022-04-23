@@ -116,10 +116,13 @@ Imagens, ícones e mídias.
 
 ### components
 
-Button.js file that contains the actual React component
-Button.styles.js file, let’s assume you are using styled components, contains corresponding styles
-Button.test.js file that contains tests
-Button.stories.js the Storybook file
+Button.js file that contains the actual React component.
+
+Button.styles.js file, let’s assume you are using styled components, contains corresponding styles.
+
+Button.test.js file that contains tests.
+
+Button.stories.js the Storybook file.
 
 ### context
 
