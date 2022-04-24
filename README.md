@@ -260,14 +260,20 @@ A ideia aqui é aprender os seguintes conceitos:
     -sinopse
     -nome
 
+    tags: Consumir API, Consumir API Clique, Consumir API - Renderizar
+
 ## Renderização + Estilização condicional
 
     -Se você já tiver assistido o filme, o botão de assistir vai mudar de "assistir" para "assistir novamente"
     -A cor do botão muda de vermelho para cinza
 
+    tags: estilizacao condicional
+
 ## Renderizar elementos de forma dinâmica (usando loops)
 
     -Renderizar lista de filmes de acordo com o retorno da api
+
+    tags: Consumir API - Renderizar
 
 ## Criar API KEY para fazer requisição
 

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { AiOutlineMenu, AiOutlineSearch } from "react-icons/ai";
 
 export const AppReal = () => {
+  // Consumir API 1
   const [movies, setMovies] = useState([
     {
       Title: "Star Wars: Episode IV - A New Hope",
@@ -14,8 +15,10 @@ export const AppReal = () => {
     },
   ]);
 
+  // Consumir API Clique 1
   const [search, setSearch] = useState("");
 
+  // Consumir API 2
   const getDefaultMovies = async () => {
     const url = `http://www.omdbapi.com/?s=star wars&apikey=${process.env.REACT_APP_OMDB_API}`;
 
@@ -27,9 +30,8 @@ export const AppReal = () => {
     }
   };
 
+  // Consumir API Clique 4-A
   const getMovies = async (search) => {
-    console.log("searching movies");
-
     const url = `http://www.omdbapi.com/?s=${search}&apikey=${process.env.REACT_APP_OMDB_API}`;
 
     const response = await fetch(url);
@@ -40,6 +42,7 @@ export const AppReal = () => {
     }
   };
 
+  // Consumir API Clique 4-B
   const handleKey = (e, search) => {
     console.log(e.key);
 
@@ -48,6 +51,7 @@ export const AppReal = () => {
     }
   };
 
+  // Consumir API 3
   useEffect(() => {
     getDefaultMovies();
   }, []);
@@ -61,6 +65,7 @@ export const AppReal = () => {
         </ContainerMenu>
 
         <ContainerSearch>
+          {/* Consumir API Clique 2 */}
           <Search
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -68,6 +73,7 @@ export const AppReal = () => {
             placeholder="Buscar"
           />
 
+          {/* Consumir API Clique 3 */}
           <IconSearch onClick={() => getMovies(search)} />
         </ContainerSearch>
       </Section>
@@ -75,6 +81,11 @@ export const AppReal = () => {
       <ContainerContent>
         <MovieCategory>Populares</MovieCategory>
         <CarrouselMovies>
+          {/* Consumir API - Renderizar 1
+          Passo o filme para o componente Movie. Assim ele recebe o poster e o título do filme.
+          Ele vai criar um componente Movie para cada filme que tiver na lista. 
+          Pra isso damos o nome de renderização dinâmica.
+          */}
           {movies.map((movie, index) => (
             <Movie movie={movie} key={index} />
           ))}
@@ -85,7 +96,23 @@ export const AppReal = () => {
 };
 
 export const Movie = ({ movie }) => {
+  {
+    /* Consumir API - Renderizar 2
+    Desestruturei os dois valores de dentro de movie (só usarei eles)
+
+    img:  Passo o link do poster na props src.
+    MovieTitle:   Passo o Title (título do filme)
+    
+    WatchButton
+      href:   Fiz uma concatenação para montar uma busca personalizada no youtube. (busquei o título do filme no youtube)
+    */
+  }
   const { Poster, Title } = movie;
+
+  {
+    /* estilizacao condicional 1 */
+  }
+  const [watched, setWatched] = useState(false);
 
   return (
     <ContainerMovie>
@@ -95,6 +122,12 @@ export const Movie = ({ movie }) => {
 
       <MovieTitle>{Title}</MovieTitle>
 
+      {/* estilizacao condicional 2 - 
+      onClick:  Salvo se a pessoa clicou pra assistir ou não. 
+      watched:  Crio uma props que passa os dados para o styled-components. 
+        se watched for true: já assisti (botão vai ficar cinza)
+        se watched for false: não assisti ainda (botão vai ficar vermelho)
+      */}
       <WatchButton
         href={
           "https://www.youtube.com/results?search_query=" +
@@ -103,6 +136,8 @@ export const Movie = ({ movie }) => {
         }
         target="_blank"
         rel="noreferrer"
+        onClick={() => setWatched(true)}
+        watched={watched}
       >
         Watch now
       </WatchButton>
@@ -219,7 +254,12 @@ export const WatchButton = styled.a`
   align-items: center;
   margin-top: 16px;
 
-  background-color: #c30000;
+  /* estilizacao condicional 3
+    Recebo a props watched que passei na etapa anterior.
+    watched é true: eu assisti, então vai ficar cinza.
+    caso contrário: não assisti, vai ficar vermelho.
+  */
+  background-color: ${({ watched }) => (watched ? `#ccc` : `#a90000`)};
   border-radius: 8px;
   width: 120px;
   color: white;
