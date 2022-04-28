@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="sc-bczRLJ kjXzdU"
+>
+  <div>
+    <img
+      alt="Star Wars: Episode IV - A New Hope"
+      src="https://m.media-amazon.com/images/M/MV5BNzVlY2MwMjktM2E4OS00Y2Y3LWE3ZjctYzhkZGM3YzA1ZWM2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"
+    />
+  </div>
+  <h1
+    className="sc-gsnTZi jFUJSo"
+  >
+    Star Wars: Episode IV - A New Hope
+  </h1>
+  <a
+    className="sc-dkzDqf gjBgfZ"
+    href="https://www.youtube.com/results?search_query=Star Wars: Episode IV - A New Hope+watch+online"
+    onClick={[Function]}
+    rel="noreferrer"
+    target="_blank"
+  >
+    Watch now
+  </a>
+</div>
+`;

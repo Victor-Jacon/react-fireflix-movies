@@ -237,7 +237,7 @@ Tema claro e tema escuro também é ativado por aqui (caso você esteja usando s
 
 # Início do código
 
-Muito do que eu vou mostrar hoje são preferencias pessoas minhas.
+Muito do que eu vou mostrar hoje são preferencias pessoais minhas.
 Como o tempo é curto, eu não vou ficar separando o que é preferencia pessoal do que é boas práticas.
 
 ## Copiar os arquivos iniciais do projeto
@@ -250,9 +250,9 @@ Copia o conteúdo deste arquivo e cola no seu styles/index.css
 
 # Projeto: Clone Netflix
 
-A melhor forma de aprender é fazendo. Então vamos montar uma cópia da netflix. A fireflix.
+A melhor forma de aprender é fazendo. Então vou mostrar uma copia da tela do netflix que eu fiz com react. A fireflix.
 
-A ideia aqui é aprender os seguintes conceitos:
+A ideia dessa apresentação é aprender os seguintes conceitos:
 
 ## Como consumir uma api (React Hook: useEffect + Context API)
 
@@ -260,7 +260,7 @@ A ideia aqui é aprender os seguintes conceitos:
     -sinopse
     -nome
 
-    tags: Consumir API, Consumir API Clique, Consumir API - Renderizar
+    tags: Consumir API, Consumir API Clique, Consumir API - Renderizar, CONTEXT API
 
 ## Renderização + Estilização condicional
 
@@ -275,10 +275,117 @@ A ideia aqui é aprender os seguintes conceitos:
 
     tags: Consumir API - Renderizar
 
-## Criar API KEY para fazer requisição
+## Como começar?
+
+1-Duplique o meu projeto do github
+
+2-Instale os pacotes + inicie o projeto
+
+```
+yarn install
+yarn start
+```
+
+3-Criar API KEY para fazer requisição
+https://www.omdbapi.com/apikey.aspx
+
+4-Criar .env na raiz do projeto
+
+Dentro do seu ENV, coloque assim:
 
 ```bash
-https://www.omdbapi.com/apikey.aspx
+REACT_APP_OMDB_API=SUA_API_KEY
+```
+
+### Aviso importante:
+
+Eu usei a vercel para fazer meu deploy do fireflix. No deploy, a busca não vai funcionar. Isso pq todos os deploys da vercel só conseguem consumir usando SSL, e a api do ombd é http.
+Para casos assim, você precisa criar uma api middleware na vercel. Seu front não vai consumir a api diretamente.
+O front consome a api da vercel, e a api da vercel consome a api final.
+
+Aqui neste repositório eu deixo um exemplo bem curtinho de código, é só copiar e colar:
+https://github.com/Victor-Jacon/sicktracks-api
+
+Mas se você quiser rodar apenas local, não precisa. É só o deploy mesmo que não vai consumir a api da forma correta.
+
+### Tarefas curtinhas pra praticar:
+
+## Organizar o código de acordo com a arquitetura do react
+
+Recorte os códigos e coloque nos arquivos corretos (requisições para api, styled-components, componentes, páginas)
+
+## Criar testes de FUNÇÕES/MÉTODOS
+
+Verificar se as funções estão com a lógica correta (https://jestjs.io/pt-BR/docs/getting-started)
+
+## Criar testes de RENDERIZAÇÃO
+
+Verificar se os elementos foram renderizados da forma esperada.
+
+1-Os testes de renderização tem uma lógica diferente dos testes de funções. É fundamental ler este trecho da documentação para aprender a criar testes de renderização da forma correta. Vai te economizar MUITO tempo. https://jestjs.io/pt-BR/docs/snapshot-testing.  
+2- https://jestjs.io/pt-BR/docs/tutorial-react).  
+3- https://pt-br.reactjs.org/docs/test-renderer.html.
+
+```bash
+yarn add --dev react-test-renderer
+```
+
+## Criar testes para REQUISIÇÕES API
+
+Verificar se a API está retornando uma promise + se os campos retornados batem com o esperado.  
+A documentação do react sugere o uso da LIB: Mock Service Worker.  
+https://mswjs.io/
+
+```bash
+yarn add msw --dev
+npx msw init public/ --save
+```
+
+## Fazer o setup + criar storybook para cada um dos componentes (https://storybook.js.org/docs/react/get-started/install)
+
+## Trocar CSS do styled-components por tailwind
+
+O tailwind está vindo forte para o ecossistema do react. Vale a pena praticar.
+
+# Como configurar o Jest ?
+
+### Instalar
+
+```
+yarn add --dev jest
+yarn add --dev babel-jest @babel/core @babel/preset-env
+```
+
+### Configurar
+
+Crie um arquivo babel.config.js na raiz do projeto, e coloque:
+
+```javascript
+module.exports = {
+  presets: [
+    "@babel/preset-env",
+    ["@babel/preset-react", { runtime: "automatic" }],
+  ],
+};
+```
+
+No seu package.json vai ter os scripts. Veja o que possui o nome yarn jest.
+Este nome vc pode colocar o que quiser. Ele vai executar o comando jest.
+
+```json
+"scripts": {
+  "start": "react-scripts start",
+  "build": "react-scripts build",
+  "test": "react-scripts test",
+  "yarn jest": "jest",
+  "eject": "react-scripts eject"
+},
+```
+
+Para que o jest rode novamente de forma automática (hot reload):
+
+```bash
+yarn jest --watch
 ```
 
 # Dúvidas frequentes
